@@ -88,6 +88,9 @@ void main(int argc, char const *argv[]) {
   pthread_create(&recvThread, NULL, recvMsg, NULL);
   pthread_join(sendThread, NULL);
   pthread_join(recvThread, NULL);
+  free(connName);
+  free(selfName);
+  free(buf);
 }
 char *readLine() {
   int SIZE = 32, i = 0;
