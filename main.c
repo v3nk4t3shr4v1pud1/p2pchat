@@ -140,7 +140,6 @@ int copy(char *dest, char *src, int offset, int len) {
 void *sendMsg(void *arg) {
   send(connDesc, selfName, strlen(selfName), 0);
   while (1) {
-    printf("%s::", selfName);
     char *msg = readLine();
     int len = strlen(msg);
     for (int i = 0; i < len; i += 2048) {
@@ -178,8 +177,7 @@ void *recvMsg(void *arg) {
       return NULL;
     } else {
       if (nameReceived) {
-        printf("\r%s::%s\n", connName, buf);
-        printf("%s::", selfName);
+        printf("%s\n", buf);
       } else {
         copy(connName, buf, 0, len);
         nameReceived = true;
